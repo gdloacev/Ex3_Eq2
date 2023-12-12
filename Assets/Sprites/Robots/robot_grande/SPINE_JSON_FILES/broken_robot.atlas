@@ -1,0 +1,230 @@
+
+broken_robot.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+slice7
+  rotate: false
+  xy: 973, 174
+  size: 105, 107
+  orig: 105, 108
+  offset: 0, 0
+  index: -1
+slice18
+  rotate: false
+  xy: 710, 1
+  size: 274, 133
+  orig: 274, 133
+  offset: 0, 0
+  index: -1
+slice15
+  rotate: false
+  xy: 1336, 1
+  size: 154, 113
+  orig: 155, 113
+  offset: 0, 0
+  index: -1
+slice16
+  rotate: false
+  xy: 921, 665
+  size: 205, 97
+  orig: 205, 97
+  offset: 0, 0
+  index: -1
+slice17
+  rotate: false
+  xy: 1101, 564
+  size: 182, 92
+  orig: 182, 92
+  offset: 0, 0
+  index: -1
+slice2
+  rotate: false
+  xy: 1265, 148
+  size: 142, 140
+  orig: 142, 140
+  offset: 0, 0
+  index: -1
+slice5
+  rotate: false
+  xy: 742, 627
+  size: 177, 148
+  orig: 177, 148
+  offset: 0, 0
+  index: -1
+slice3
+  rotate: false
+  xy: 948, 476
+  size: 151, 187
+  orig: 151, 187
+  offset: 0, 0
+  index: -1
+slice6
+  rotate: false
+  xy: 1326, 290
+  size: 104, 96
+  orig: 104, 96
+  offset: 0, 0
+  index: -1
+slice8
+  rotate: false
+  xy: 1409, 197
+  size: 116, 74
+  orig: 117, 74
+  offset: 0, 0
+  index: -1
+slice9
+  rotate: false
+  xy: 497, 479
+  size: 96, 47
+  orig: 96, 48
+  offset: 0, 0
+  index: -1
+slice4
+  rotate: false
+  xy: 1092, 174
+  size: 171, 159
+  orig: 171, 159
+  offset: 0, 0
+  index: -1
+slice10
+  rotate: false
+  xy: 1416, 116
+  size: 124, 79
+  orig: 124, 79
+  offset: 0, 0
+  index: -1
+slice11
+  rotate: false
+  xy: 595, 479
+  size: 69, 55
+  orig: 69, 55
+  offset: 0, 0
+  index: -1
+slice1
+  rotate: false
+  xy: 1, 536
+  size: 433, 418
+  orig: 433, 418
+  offset: 0, 0
+  index: -1
+slice12
+  rotate: false
+  xy: 1232, 430
+  size: 182, 91
+  orig: 182, 91
+  offset: 0, 0
+  index: -1
+slice13
+  rotate: false
+  xy: 497, 182
+  size: 292, 127
+  orig: 292, 127
+  offset: 0, 0
+  index: -1
+slice19
+  rotate: false
+  xy: 1101, 430
+  size: 129, 132
+  orig: 129, 132
+  offset: 0, 0
+  index: -1
+slice20
+  rotate: false
+  xy: 1158, 1
+  size: 176, 145
+  orig: 176, 145
+  offset: 0, 0
+  index: -1
+fx1
+  rotate: false
+  xy: 497, 1
+  size: 211, 179
+  orig: 211, 179
+  offset: 0, 0
+  index: -1
+fx4
+  rotate: false
+  xy: 1092, 335
+  size: 232, 93
+  orig: 233, 94
+  offset: 1, 1
+  index: -1
+fx3
+  rotate: false
+  xy: 436, 536
+  size: 304, 247
+  orig: 305, 248
+  offset: 1, 1
+  index: -1
+explode6
+  rotate: false
+  xy: 497, 311
+  size: 206, 166
+  orig: 206, 166
+  offset: 0, 0
+  index: -1
+explode7
+  rotate: false
+  xy: 791, 136
+  size: 180, 169
+  orig: 181, 169
+  offset: 0, 0
+  index: -1
+explode2
+  rotate: false
+  xy: 705, 311
+  size: 207, 165
+  orig: 207, 165
+  offset: 0, 0
+  index: -1
+explode8
+  rotate: false
+  xy: 914, 307
+  size: 176, 167
+  orig: 176, 167
+  offset: 0, 0
+  index: -1
+explode3
+  rotate: false
+  xy: 436, 785
+  size: 244, 193
+  orig: 244, 193
+  offset: 0, 0
+  index: -1
+explode9
+  rotate: false
+  xy: 986, 1
+  size: 170, 171
+  orig: 170, 171
+  offset: 0, 0
+  index: -1
+explode4
+  rotate: false
+  xy: 682, 785
+  size: 230, 190
+  orig: 230, 190
+  offset: 0, 0
+  index: -1
+explode5
+  rotate: false
+  xy: 914, 785
+  size: 229, 190
+  orig: 229, 190
+  offset: 0, 0
+  index: -1
+explode1
+  rotate: false
+  xy: 742, 478
+  size: 204, 147
+  orig: 204, 147
+  offset: 0, 0
+  index: -1
+slice35
+  rotate: false
+  xy: 1, 1
+  size: 494, 533
+  orig: 494, 645
+  offset: 0, 112
+  index: -1
