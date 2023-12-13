@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private bool readyToJump;
     private bool dead;
     private int lives;
+    private bool faceRight = true;
 
     void Start()
     {
@@ -40,6 +41,14 @@ public class PlayerMovement : MonoBehaviour
 
         transform.Translate(horizontal * speed * Time.deltaTime, 0, 0);
         
+        if (horizontal > 0 && !faceRight)
+        {
+            Flip();
+        }
+        if (horizontal < 0 && faceRight)
+        {
+            Flip();
+        }
         if (Input.GetKeyDown(KeyCode.Space) && readyToJump)
         {
             if (isGrounded())
@@ -74,5 +83,14 @@ public class PlayerMovement : MonoBehaviour
         {
             readyToJump = true;
         }
+    }
+
+    private void Flip()
+    {
+        Vector2 currentScale = transform.localScale;
+        currentScale *= -1;
+        transform.localScale = currentScale;
+
+        faceRight = !faceRight;
     }
 }
