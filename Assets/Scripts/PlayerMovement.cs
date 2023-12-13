@@ -88,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
     private void Flip()
     {
         Vector2 currentScale = transform.localScale;
-        currentScale *= -1;
+        currentScale.x *= -1;
         transform.localScale = currentScale;
 
         faceRight = !faceRight;
