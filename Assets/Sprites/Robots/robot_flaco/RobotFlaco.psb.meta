@@ -5472,16 +5472,6 @@ ScriptedImporter:
   resliceFromLayer: 0
   mosaicPSDLayers: []
   rigPSDLayers:
-  - name: Cabeza
-    spriteName: Cabeza
-    isGroup: 0
-    parentIndex: -1
-    spriteID: 5eaf2f5d0c1441549864d392f8ad67a1
-    layerID: 3
-    mosaicPosition: {x: 4, y: 4}
-    flatten: 0
-    isImported: 1
-    isVisible: 1
   - name: ManoDer
     spriteName: ManoDer
     isGroup: 0
@@ -5512,6 +5502,26 @@ ScriptedImporter:
     flatten: 0
     isImported: 1
     isVisible: 1
+  - name: Cabeza
+    spriteName: Cabeza
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 5eaf2f5d0c1441549864d392f8ad67a1
+    layerID: 3
+    mosaicPosition: {x: 4, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: OrejaIzq
+    spriteName: OrejaIzq
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 9ce334d92023e5042aaea1b77a80112a
+    layerID: 21
+    mosaicPosition: {x: 254, y: 219}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
   - name: PiernaDer
     spriteName: PiernaDer
     isGroup: 0
@@ -5519,46 +5529,6 @@ ScriptedImporter:
     spriteID: 3230fbbec06a9554c8be4cdfc3f92b57
     layerID: 7
     mosaicPosition: {x: 86, y: 219}
-    flatten: 0
-    isImported: 1
-    isVisible: 1
-  - name: Cuerpo
-    spriteName: Cuerpo
-    isGroup: 0
-    parentIndex: -1
-    spriteID: 0a139c61189135641bb015e091482c5a
-    layerID: 4
-    mosaicPosition: {x: 235, y: 4}
-    flatten: 0
-    isImported: 1
-    isVisible: 1
-  - name: HombroIzq
-    spriteName: HombroIzq
-    isGroup: 0
-    parentIndex: -1
-    spriteID: 8f1df15196d55204f960d605feaa0318
-    layerID: 18
-    mosaicPosition: {x: 375, y: 4}
-    flatten: 0
-    isImported: 1
-    isVisible: 1
-  - name: BrazoIzq
-    spriteName: BrazoIzq
-    isGroup: 0
-    parentIndex: -1
-    spriteID: 574ebb9ca2ffbe844acc7fa545f74927
-    layerID: 17
-    mosaicPosition: {x: 370, y: 400}
-    flatten: 0
-    isImported: 1
-    isVisible: 1
-  - name: PiernaIzq
-    spriteName: PiernaIzq
-    isGroup: 0
-    parentIndex: -1
-    spriteID: 6eeca1f2f01d0af4cbda3a689489394d
-    layerID: 6
-    mosaicPosition: {x: 4, y: 219}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -5582,6 +5552,26 @@ ScriptedImporter:
     flatten: 0
     isImported: 1
     isVisible: 1
+  - name: Cuerpo
+    spriteName: Cuerpo
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 0a139c61189135641bb015e091482c5a
+    layerID: 4
+    mosaicPosition: {x: 235, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: PiernaIzq
+    spriteName: PiernaIzq
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 6eeca1f2f01d0af4cbda3a689489394d
+    layerID: 6
+    mosaicPosition: {x: 4, y: 219}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
   - name: PantorrillaIzq
     spriteName: PantorrillaIzq
     isGroup: 0
@@ -5602,13 +5592,23 @@ ScriptedImporter:
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: OrejaIzq
-    spriteName: OrejaIzq
+  - name: HombroIzq
+    spriteName: HombroIzq
     isGroup: 0
     parentIndex: -1
-    spriteID: 9ce334d92023e5042aaea1b77a80112a
-    layerID: 21
-    mosaicPosition: {x: 254, y: 219}
+    spriteID: 8f1df15196d55204f960d605feaa0318
+    layerID: 18
+    mosaicPosition: {x: 375, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: BrazoIzq
+    spriteName: BrazoIzq
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 574ebb9ca2ffbe844acc7fa545f74927
+    layerID: 17
+    mosaicPosition: {x: 370, y: 400}
     flatten: 0
     isImported: 1
     isVisible: 1
