@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RobotFlaco
       objectReference: {fileID: 0}
+    - target: {fileID: -8653719598885068355, guid: 9177cb933ea10db4a847cbd21db8d055, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 9177cb933ea10db4a847cbd21db8d055, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -180,6 +184,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 4843985084834002234, guid: 9177cb933ea10db4a847cbd21db8d055, type: 3}
+--- !u!1001 &1465948474
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8653719598885068355, guid: d45ba1d282917004890ccdec96e51391, type: 3}
+      propertyPath: m_Name
+      value: soldier
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: d45ba1d282917004890ccdec96e51391, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: d45ba1d282917004890ccdec96e51391, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -12.59
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: d45ba1d282917004890ccdec96e51391, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.056135416
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: d45ba1d282917004890ccdec96e51391, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: d45ba1d282917004890ccdec96e51391, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: d45ba1d282917004890ccdec96e51391, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: d45ba1d282917004890ccdec96e51391, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: d45ba1d282917004890ccdec96e51391, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: d45ba1d282917004890ccdec96e51391, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: d45ba1d282917004890ccdec96e51391, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: d45ba1d282917004890ccdec96e51391, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 4843985084834002234, guid: d45ba1d282917004890ccdec96e51391, type: 3}
 --- !u!1001 &1755670178
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -191,9 +252,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: RobotGris
       objectReference: {fileID: 0}
+    - target: {fileID: -8653719598885068355, guid: f384286287e5ba941a8fda3af687a42b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: f384286287e5ba941a8fda3af687a42b, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: f384286287e5ba941a8fda3af687a42b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -647,6 +712,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1755670183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755670179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bb3a027ff4b52343bc4ab61b5afb2fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  maxRange: 10
 --- !u!1 &1935594526 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8653719598885068355, guid: 9177cb933ea10db4a847cbd21db8d055, type: 3}
@@ -694,3 +773,41 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1935594531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935594526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bb3a027ff4b52343bc4ab61b5afb2fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  maxRange: 10
+--- !u!1 &2048155530 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -8653719598885068355, guid: d45ba1d282917004890ccdec96e51391, type: 3}
+  m_PrefabInstance: {fileID: 1465948474}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2048155531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2048155530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbbba6f64e9defa4ca8410adc0cbee7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxSize: {x: 0, y: 0}
+  castDistance: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  speed: 0
+  jumpForce: 0
