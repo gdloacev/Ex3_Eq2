@@ -8,22 +8,30 @@ public class PlayerMovement : MonoBehaviour
     private float horizontal;
     private float vertical;
     private Rigidbody2D rb;
+    private BoxCollider2D bc;
     [SerializeField] private Vector2 boxSize;
     [SerializeField] private float castDistance;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float speed;
     [SerializeField] private float jumpForce;
-    private bool readyToJump;
+    private bool readyToJump, crouch;
     private bool dead;
+    private float orgSize, newSize, orgPos, newPos;
     private int lives;
     private bool faceRight = true;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        bc = GetComponent<BoxCollider2D>();
         readyToJump = true;
         dead = false;
         lives = 5;
+        crouch = false;
+        orgSize = bc.size.y;
+        orgPos = bc.offset.y;
+        newSize = bc.size.y * 0.5f;
+        newPos = bc.offset.y * 0.5f;
     }
 
     // Update is called once per frame
@@ -58,6 +66,18 @@ public class PlayerMovement : MonoBehaviour
 
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            rb.bodyType = RigidbodyType2D.Static;
+            Crouch();
+        }
+        else if (Input.GetKeyUp(KeyCode.S))
+        {
+            rb.bodyType = RigidbodyType2D.Dynamic;
+            GetUp();
+        }
+
     }
 
     public bool isGrounded()
@@ -83,6 +103,18 @@ public class PlayerMovement : MonoBehaviour
         {
             readyToJump = true;
         }
+    }
+
+    private void Crouch()
+    {
+        bc.size = new Vector2(bc.size.x, newSize);
+        bc.offset = new Vector2(bc.offset.x, newPos);
+    }
+
+    private void GetUp()
+    {
+        bc.size = new Vector2(bc.size.x, orgSize);
+        bc.offset = new Vector2(bc.offset.x, orgPos);
     }
 
     private void Flip()
