@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     private float horizontal;
     private float vertical;
+    private Vector2 moveDir;
     private Rigidbody2D rb;
     private BoxCollider2D bc;
     [SerializeField] private Vector2 boxSize;
@@ -14,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float speed;
     [SerializeField] private float jumpForce;
+    [SerializeField] private Animator anim;
     private bool readyToJump, crouch;
     private bool dead;
     private float orgSize, newSize, orgPos, newPos;
@@ -40,6 +42,8 @@ public class PlayerMovement : MonoBehaviour
         if (!dead)
         {
             horizontal = Input.GetAxisRaw("Horizontal");
+            vertical = Input.GetAxisRaw("Vertical");
+            moveDir = new Vector2(horizontal, vertical).normalized;
         }
         else if (dead)
         {
@@ -67,15 +71,22 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.S))
+        if (horizontal == 0)
         {
-            rb.bodyType = RigidbodyType2D.Static;
-            Crouch();
-        }
-        else if (Input.GetKeyUp(KeyCode.S))
-        {
-            rb.bodyType = RigidbodyType2D.Dynamic;
-            GetUp();
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                rb.bodyType = RigidbodyType2D.Static;
+                Crouch();
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    anim.SetTrigger("shoot");
+                }
+            }
+            else if (Input.GetKeyUp(KeyCode.S))
+            {
+                rb.bodyType = RigidbodyType2D.Dynamic;
+                GetUp();
+            }
         }
 
     }
@@ -103,6 +114,19 @@ public class PlayerMovement : MonoBehaviour
         {
             readyToJump = true;
         }
+
+        if (collision.gameObject.tag == "Enemy")
+        {
+            if (lives > 1)
+            {
+                lives--;
+            }
+            else if (lives == 1)
+            {
+                lives--;
+                dead = true;
+            }
+        }
     }
 
     private void Crouch()
@@ -124,5 +148,11 @@ public class PlayerMovement : MonoBehaviour
         transform.localScale = currentScale;
 
         faceRight = !faceRight;
+    }
+
+    public void Animate()
+    {
+        anim.SetFloat("moveX", moveDir.x);
+        anim.SetFloat("moveY", moveDir.y);
     }
 }
