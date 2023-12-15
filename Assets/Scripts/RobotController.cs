@@ -49,6 +49,11 @@ public class RobotController : MonoBehaviour
         if (other.collider.tag == "Player")
         {
             Destroy(other.gameObject);
+        } 
+        else if (other.collider.tag == "PruebaBullet")
+        {
+            animator.SetTrigger("isDead");
+
         }
     }
 }
