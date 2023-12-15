@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private RawImage[] life;
-    [SerializeField] private Animator anim;
     private int hearts;
     // Start is called before the first frame update
     void Start()
@@ -42,7 +41,10 @@ public class PlayerHealth : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            hearts--;
+            if (hearts > 0)
+            {
+                hearts--;
+            }
         }
     }
 }

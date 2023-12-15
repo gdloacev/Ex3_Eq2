@@ -15,12 +15,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float speed;
     [SerializeField] private float jumpForce;
-    [SerializeField] private Animator anim;
-    private bool readyToJump, crouch;
+    [SerializeField] private Animator animTorso;
+    [SerializeField] private Animator animLegs;
+    //[SerializeField] private BulletBehavior bullet;
+    //[SerializeField] private Transform launchOffset;
+    private bool readyToJump;
     private bool dead;
     private float orgSize, newSize, orgPos, newPos;
     private int lives;
     private bool faceRight = true;
+    
 
     void Start()
     {
@@ -29,7 +33,6 @@ public class PlayerMovement : MonoBehaviour
         readyToJump = true;
         dead = false;
         lives = 5;
-        crouch = false;
         orgSize = bc.size.y;
         orgPos = bc.offset.y;
         newSize = bc.size.y * 0.5f;
@@ -52,6 +55,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         transform.Translate(horizontal * speed * Time.deltaTime, 0, 0);
+
+        /*if (Input.GetKey(KeyCode.E))
+        {
+            Instantiate(bullet, launchOffset.position, transform.rotation);
+        }*/
         
         if (horizontal > 0 && !faceRight)
         {
@@ -61,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Flip();
         }
+
         if (Input.GetKeyDown(KeyCode.Space) && readyToJump)
         {
             if (isGrounded())
@@ -79,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
                 Crouch();
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    anim.SetTrigger("shoot");
+                    animTorso.SetTrigger("shoot");
                 }
             }
             else if (Input.GetKeyUp(KeyCode.S))
@@ -152,7 +161,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Animate()
     {
-        anim.SetFloat("moveX", moveDir.x);
-        anim.SetFloat("moveY", moveDir.y);
+        animTorso.SetFloat("moveX", moveDir.x);
+        animLegs.SetFloat("moveX", moveDir.x);
     }
 }
