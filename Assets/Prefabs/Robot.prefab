@@ -2343,6 +2343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bossLife: 10
   _tag: {fileID: 8796804933073226759}
+  _audioDie: {fileID: 8300000, guid: 2c27d45e7883f11458e423860762df24, type: 3}
 --- !u!82 &8849480410905189602
 AudioSource:
   m_ObjectHideFlags: 0

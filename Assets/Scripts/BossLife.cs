@@ -6,14 +6,18 @@ public class BossLife : MonoBehaviour
 {
     [SerializeField] private int _bossLife = 10;
     [SerializeField] private GameObject _tag = null;
+    [SerializeField] private AudioClip _audioDie = null;
     private Animator _animator = null;
     private BoxCollider2D _boxCollider = null;
+    private AudioSource _audioSource = null;
+
     
 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
         _boxCollider = GetComponent<BoxCollider2D>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -30,10 +34,11 @@ public class BossLife : MonoBehaviour
     }
 
     private void Die() {
-        if (_bossLife <= 0)
+        if (_bossLife <= 0 && !_boxCollider.isTrigger)
         {
             UnityEngine.Debug.Log("Muerto");
             _animator.Play("Die");
+            _audioSource.PlayOneShot(_audioDie);
             _boxCollider.isTrigger = true;
             if (_tag != null)
             {
