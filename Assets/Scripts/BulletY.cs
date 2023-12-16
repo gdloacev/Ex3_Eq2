@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletBehavior : MonoBehaviour
+public class BulletY : MonoBehaviour
 {
-    [SerializeField] private float velX;
-    private float velY = 0f;
+    [SerializeField] private float velY;
+    private float velX = 0f;
     Rigidbody2D rb;
 
     // Start is called before the first frame update

@@ -7,7 +7,6 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     private float horizontal;
     private float vertical;
-    private Vector2 moveDir;
     private Rigidbody2D rb;
     private BoxCollider2D bc;
     [SerializeField] private Vector2 boxSize;
@@ -17,13 +16,22 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpForce;
     [SerializeField] private Animator animTorso;
     [SerializeField] private Animator animLegs;
+    [SerializeField] private Animator animSplat, animPool;
+    [SerializeField] private GameObject bulletRight, bulletLeft, bulletUp, bulletDown, bloodSplat, bloodPool;
+    [SerializeField] private float fireRate = 0.5f;
+    private Vector2 bulletPos, splatPos, poolPos;
+    private float nextFire = 0.0f;
+
+
     //[SerializeField] private BulletBehavior bullet;
     //[SerializeField] private Transform launchOffset;
-    private bool readyToJump;
+    private bool readyToJump, crouch;
     private bool dead;
     private float orgSize, newSize, orgPos, newPos;
     private int lives;
     private bool faceRight = true;
+    private bool faceUp = false;
+    private bool faceDown = false;
     
 
     void Start()
@@ -46,20 +54,11 @@ public class PlayerMovement : MonoBehaviour
         {
             horizontal = Input.GetAxisRaw("Horizontal");
             vertical = Input.GetAxisRaw("Vertical");
-            moveDir = new Vector2(horizontal, vertical).normalized;
-        }
-        else if (dead)
-        {
-            horizontal = 0;
 
-        }
-
-        transform.Translate(horizontal * speed * Time.deltaTime, 0, 0);
-
-        /*if (Input.GetKey(KeyCode.E))
-        {
-            Instantiate(bullet, launchOffset.position, transform.rotation);
-        }*/
+            if (!crouch)
+            {
+                transform.Translate(horizontal * speed * Time.deltaTime, 0, 0);
+            }
         
         if (horizontal > 0 && !faceRight)
         {
@@ -70,32 +69,152 @@ public class PlayerMovement : MonoBehaviour
             Flip();
         }
 
+        if (faceRight)
+        {
+            animTorso.SetFloat("moveX", 1f);
+            animLegs.SetFloat("moveX", 1f);
+        }
+        else if (!faceRight)
+        {
+            animTorso.SetFloat("moveX", 0f);
+            animLegs.SetFloat("moveX", 0f);
+        }
+
+        if (horizontal < 0)
+        {
+            animTorso.SetBool("run", true);
+            animLegs.SetBool("run", true);
+            animTorso.SetBool("idle", false);
+            animLegs.SetBool("idle", false);
+        }
+        else if (horizontal > 0)
+        {
+            animTorso.SetBool("run", true);
+            animLegs.SetBool("run", true);
+            animTorso.SetBool("idle", false);
+            animLegs.SetBool("idle", false);
+        }
+
+        if (horizontal == 0)
+        {
+            animTorso.SetBool("idle",true);
+            animLegs.SetBool("idle", true);
+            animTorso.SetBool("run", false);
+            animLegs.SetBool("run", false);
+        }
+
         if (Input.GetKeyDown(KeyCode.Space) && readyToJump)
         {
             if (isGrounded())
             {
                 rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
                 readyToJump = false;
-
+                animTorso.SetBool("grounded", false);
+                animLegs.SetBool("grounded", false);
+                if (horizontal == 0)
+                {
+                     animTorso.SetFloat("speedY", 0f);
+                     animLegs.SetFloat("speedY", 0f);
+                }
+                else
+                {
+                     animTorso.SetFloat("speedY", 1f);
+                     animLegs.SetFloat("speedY", 1f);
+                }
+                
             }
         }
 
-        if (horizontal == 0)
+
+        if (Input.GetKeyDown(KeyCode.S))
         {
-            if (Input.GetKeyDown(KeyCode.S))
+            if (isGrounded())
             {
-                rb.bodyType = RigidbodyType2D.Static;
-                Crouch();
-                if (Input.GetKeyDown(KeyCode.E))
+                    if (horizontal == 0)
+                    {
+                        rb.bodyType = RigidbodyType2D.Static;
+                        animTorso.SetBool("crouch", true);
+                        animLegs.SetBool("crouch", true);
+                        animTorso.SetBool("run", false);
+                        animLegs.SetBool("run", false);
+                        animTorso.SetBool("idle", false);
+                        animLegs.SetBool("idle", false);
+                        crouch = true;
+                        Crouch();
+                    }
+            }
+            else if (!isGrounded())
+            {
+                animTorso.SetBool("faceDown", true);
+                faceDown = true;
+            }
+        }
+        else if (Input.GetKeyUp(KeyCode.S))
+        {
+                if (isGrounded())
                 {
-                    animTorso.SetTrigger("shoot");
+                    if (horizontal == 0)
+                    {
+                        rb.bodyType = RigidbodyType2D.Dynamic;
+                        animTorso.SetBool("crouch", false);
+                        animLegs.SetBool("crouch", false);
+                        crouch = false;
+                        GetUp();
+                    }
+                }
+                else if (!isGrounded())
+                {
+                    animTorso.SetBool("faceDown", false);
+                    faceDown = false;
                 }
             }
-            else if (Input.GetKeyUp(KeyCode.S))
+
+
+        if (Input.GetKeyDown(KeyCode.W) && !crouch)
+        {
+            animTorso.SetBool("faceUp", true);
+            faceUp = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.W))
+        {
+            animTorso.SetBool("faceUp", false);
+            faceUp = false;
+        }
+
+        if (Input.GetKey(KeyCode.E) && Time.time > nextFire)
+        {
+            nextFire = Time.time + fireRate;
+            if (crouch)
             {
-                rb.bodyType = RigidbodyType2D.Dynamic;
-                GetUp();
+                    animTorso.SetTrigger("crouch_shoot");
+            }else if (!crouch)
+            {
+                    if (!faceUp && !faceDown)
+                    {
+                        animTorso.SetTrigger("shoot");
+                    }
+                    else if (faceUp && !faceDown)
+                    {
+                        animTorso.SetTrigger("shootUp");
+                    }
+                    else if (faceDown && !faceUp)
+                    {
+                        animTorso.SetTrigger("shootDown");
+                    }
             }
+            Fire();
+        }
+
+        }
+        else if (dead)
+        {
+            horizontal = 0;
+            animTorso.SetBool("run", false);
+            animLegs.SetBool("run", false);
+            animTorso.SetBool("idle", true);
+            animLegs.SetBool("idle", true);
+            animTorso.SetBool("faceUp", false);
+            animTorso.SetBool("faceDown", false);
         }
 
     }
@@ -122,18 +241,90 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.tag == "ground")
         {
             readyToJump = true;
+            animTorso.SetBool("grounded", true);
+            animLegs.SetBool("grounded", true);
+            animTorso.SetFloat("speedY", 0f);
+            animLegs.SetFloat("speedY", 0f);
+
         }
 
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "EnemyBullet")
         {
+            splatPos = transform.position;
+            poolPos = transform.position;
+            if (faceRight)
+            {
+                splatPos += new Vector2(+1f, +1f);
+                poolPos += new Vector2(0f, +0.2f);
+            }
+            else if (!faceRight)
+            {
+                splatPos += new Vector2(-1f, +1f);
+                poolPos += new Vector2(0f, +0.2f);
+            }
+            animTorso.SetTrigger("hurt");
+            animLegs.SetTrigger("hurt");
+            animSplat.SetTrigger("hurt");
+            Instantiate(bloodSplat, splatPos, Quaternion.identity);
             if (lives > 1)
             {
                 lives--;
             }
             else if (lives == 1)
             {
+                Instantiate(bloodPool, poolPos, Quaternion.identity);
+                animPool.SetBool("dead", true);
+                animTorso.SetBool("dead", true);
+                animLegs.SetBool("dead", true);
                 lives--;
                 dead = true;
+            }
+        }
+    }
+
+    private void Fire()
+    {
+        bulletPos = transform.position;
+        if (faceRight)
+        {
+            if (!faceUp && !faceDown)
+            {
+                bulletPos += new Vector2(+1f, +1f);
+                Instantiate(bulletRight, bulletPos, Quaternion.identity);
+            }
+            else
+            {
+                if (faceUp && !crouch)
+                {
+                    bulletPos += new Vector2(+1f, +1.5f);
+                    Instantiate(bulletUp, bulletPos, Quaternion.identity);
+                }
+                else if (faceDown)
+                {
+                    bulletPos += new Vector2(+1f, +0.5f);
+                    Instantiate(bulletDown, bulletPos, Quaternion.identity);
+                }
+            }
+        }
+        else if (!faceRight)
+        {
+            if (!faceUp && !faceDown)
+            {
+                bulletPos += new Vector2(-1f, +1f);
+                Instantiate(bulletLeft, bulletPos, Quaternion.identity);
+            }
+            else
+            {
+                if (faceUp)
+                {
+                    bulletPos += new Vector2(-1f, +1.5f);
+                    Instantiate(bulletUp, bulletPos, Quaternion.identity);
+                }
+                else if (faceDown)
+                {
+                    bulletPos += new Vector2(-1f, +0.5f);
+                    Instantiate(bulletDown, bulletPos, Quaternion.identity);
+                }
             }
         }
     }
@@ -157,11 +348,5 @@ public class PlayerMovement : MonoBehaviour
         transform.localScale = currentScale;
 
         faceRight = !faceRight;
-    }
-
-    public void Animate()
-    {
-        animTorso.SetFloat("moveX", moveDir.x);
-        animLegs.SetFloat("moveX", moveDir.x);
     }
 }
