@@ -257,7 +257,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Hurt(collision.gameObject);
-        if (collision.gameObject.tag == enemy || collision.gameObject.tag == eBullet)
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "EnemyBullet")
         {
             StartCoroutine(OnCollisionExit2D(collision));
         }
@@ -400,7 +400,7 @@ public class PlayerMovement : MonoBehaviour
     {
         enemy = "";
         eBullet = "";
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
         enemy = "Enemy";
         eBullet = "EnemyBullet";
     }
@@ -409,7 +409,7 @@ public class PlayerMovement : MonoBehaviour
     {
         enemy = "";
         eBullet = "";
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
         enemy = "Enemy";
         eBullet = "EnemyBullet";
     }
