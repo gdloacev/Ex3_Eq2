@@ -290,6 +290,9 @@ public class PlayerMovement : MonoBehaviour
         {
             BecomeInvincible();
         }
+        else {
+            StopCoroutine(Invincibility());
+        }
     }
 
     public int GetLivesCount()
@@ -426,24 +429,6 @@ public class PlayerMovement : MonoBehaviour
         faceRight = !faceRight;
     }
 
-    private IEnumerator OnCollisionExit2D(Collision2D collision)
-    {
-        enemy = "";
-        eBullet = "";
-        yield return new WaitForSeconds(1f);
-        enemy = "Enemy";
-        eBullet = "EnemyBullet";
-    }
-
-    private IEnumerator OnTriggerExit2D(Collider2D collision)
-    {
-        enemy = "";
-        eBullet = "";
-        yield return new WaitForSeconds(1f);
-        enemy = "Enemy";
-        eBullet = "EnemyBullet";
-    }
-
     private void ScaleModelTo(Vector3 scale)
     {
         torso.transform.localScale = scale;
@@ -468,6 +453,6 @@ public class PlayerMovement : MonoBehaviour
         }
         ScaleModelTo(Vector3.one);
         isInvincible = false;
-
+        StopCoroutine(Invincibility());
     }
 }

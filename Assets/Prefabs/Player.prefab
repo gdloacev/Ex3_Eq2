@@ -644,12 +644,12 @@ MonoBehaviour:
   m_ComponentVersion: 1
   m_LightType: 1
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.5
+  m_FalloffIntensity: 0.45
   m_Color: {r: 0.8867924, g: 0.88575864, b: 0.5254902, a: 1}
-  m_Intensity: 0.5
+  m_Intensity: 0.4
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 000000007bcb7705
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -663,8 +663,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.50915, y: -6.0143003, z: 0}
-    m_Extent: {x: 6.01055, y: 8.5027, z: 0}
+    m_Center: {x: 10.8601, y: -35.6683, z: 0}
+    m_Extent: {x: 17.9274, y: 38.6451, z: 0}
   m_PointLightInnerAngle: 215.20598
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -672,11 +672,11 @@ MonoBehaviour:
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
-  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffSize: 1
   m_ShapeLightFalloffOffset: {x: 0, y: 0}
   m_ShapePath:
-  - {x: -5.0011234, y: -14.022379, z: 0.0000000018626451}
-  - {x: 6.017698, y: -13.684541, z: 0.0000000018626451}
+  - {x: -6.0618467, y: -72.69276, z: 0.0000000018626451}
+  - {x: 27.786451, y: -73.31181, z: 0.0000000018626451}
   - {x: 0.699203, y: 1.9558262, z: 0.0000000018626451}
   - {x: -1.1163878, y: 1.9793327, z: 0.0000000018626451}
 --- !u!1001 &712844293499135628
