@@ -295,12 +295,10 @@ public class PlayerMovement : MonoBehaviour
                 if (faceRight)
                 {
                     splatPos += new Vector2(+1f, +1f);
-                    poolPos += new Vector2(0f, +0.2f);
                 }
                 else if (!faceRight)
                 {
                     splatPos += new Vector2(-1f, +1f);
-                    poolPos += new Vector2(0f, +0.2f);
                 }
                 animTorso.SetTrigger("hurt");
                 animLegs.SetTrigger("hurt");
@@ -309,6 +307,16 @@ public class PlayerMovement : MonoBehaviour
             }
             else if (lives == 1)
             {
+                if (faceRight)
+                {
+                    splatPos += new Vector2(+1f, +1f);
+                    poolPos += new Vector2(0f, +0.6f);
+                }
+                else if (!faceRight)
+                {
+                    splatPos += new Vector2(-1f, +1f);
+                    poolPos += new Vector2(0f, +0.6f);
+                }
                 Instantiate(bloodPool, poolPos, Quaternion.identity);
                 Instantiate(bloodSplat, splatPos, Quaternion.identity);
                 animPool.SetBool("dead", true);
