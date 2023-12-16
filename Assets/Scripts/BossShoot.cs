@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class BossShoot : MonoBehaviour
 {
-    [SerializeField] private GameObject _target;
     [SerializeField] private Transform _shootRespawn;
     [SerializeField] private GameObject _bullet;
     [SerializeField] private float _coldDownFire = 1f;

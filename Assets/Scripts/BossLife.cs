@@ -5,9 +5,10 @@ using UnityEngine;
 public class BossLife : MonoBehaviour
 {
     [SerializeField] private int _bossLife = 10;
+    [SerializeField] private GameObject _tag = null;
     private Animator _animator = null;
     private BoxCollider2D _boxCollider = null;
-    private BoxCollider2D _colliderTag = null;
+    
 
     private void Awake()
     {
@@ -34,7 +35,12 @@ public class BossLife : MonoBehaviour
             UnityEngine.Debug.Log("Muerto");
             _animator.Play("Die");
             _boxCollider.isTrigger = true;
-            gameObject.tag = "Untagged";
+            if (_tag != null)
+            {
+                _tag.tag = gameObject.tag;
+                _tag.SetActive(false);
+            }
+
         }
     }
 
