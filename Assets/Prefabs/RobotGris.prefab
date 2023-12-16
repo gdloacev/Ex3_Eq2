@@ -101,7 +101,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 8199848182903434480}
   m_Bounds:
-    m_Center: {x: 0.18246695, y: 0.38237652, z: 0}
+    m_Center: {x: 0.18246704, y: 0.38237652, z: 0}
     m_Extent: {x: 0.5956411, y: 0.39124316, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -240,7 +240,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 6009218406946100323}
   m_Bounds:
-    m_Center: {x: 0.1058518, y: 0.23796046, z: 0}
+    m_Center: {x: 0.10585177, y: 0.23796046, z: 0}
     m_Extent: {x: 0.33934116, y: 0.30333686, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -472,8 +472,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 1688349454218685743}
   m_Bounds:
-    m_Center: {x: -0.19870675, y: 0.26089, z: 0}
-    m_Extent: {x: 0.44338667, y: 0.56389475, z: 0}
+    m_Center: {x: -0.19870666, y: 0.26089, z: 0}
+    m_Extent: {x: 0.4433867, y: 0.56389475, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -578,7 +578,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 7093257398108764278}
   m_Bounds:
-    m_Center: {x: -0.38863665, y: 0.3132363, z: 0}
+    m_Center: {x: -0.38863653, y: 0.3132363, z: 0}
     m_Extent: {x: 0.41228485, y: 0.36355942, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -797,7 +797,9 @@ GameObject:
   - component: {fileID: 3114867477368926657}
   - component: {fileID: 4329627736720541721}
   - component: {fileID: 4329627736720541720}
-  - component: {fileID: 4329627736720541722}
+  - component: {fileID: 329377109}
+  - component: {fileID: 329377110}
+  - component: {fileID: 329377111}
   m_Layer: 0
   m_Name: RobotGris
   m_TagString: Untagged
@@ -904,7 +906,54 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4329627736720541722
+--- !u!50 &329377109
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4319553077997119906}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1000
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!61 &329377110
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4319553077997119906}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.28116703, y: 1.8401188}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.2323341, y: 3.3202379}
+  m_EdgeRadius: 0
+--- !u!114 &329377111
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1020,7 +1069,7 @@ MonoBehaviour:
   - {fileID: 5958999144030769506}
   - {fileID: 961040703559206867}
   m_Bounds:
-    m_Center: {x: -0.03437555, y: 0.0753656, z: 0}
+    m_Center: {x: -0.03437543, y: 0.0753656, z: 0}
     m_Extent: {x: 0.70280564, y: 0.8517556, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -1264,7 +1313,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 6706116165281308247}
   m_Bounds:
-    m_Center: {x: -0.40896985, y: 0.27224612, z: 0}
+    m_Center: {x: -0.40896973, y: 0.27224612, z: 0}
     m_Extent: {x: 0.48453102, y: 0.24684517, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -1507,8 +1556,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 2035147894170531448}
   m_Bounds:
-    m_Center: {x: 0.23508269, y: 0.65945643, z: 0}
-    m_Extent: {x: 0.9388064, y: 1.0105138, z: 0}
+    m_Center: {x: 0.23508257, y: 0.65945643, z: 0}
+    m_Extent: {x: 0.9388065, y: 1.0105138, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0

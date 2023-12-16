@@ -6,6 +6,8 @@ public class RobotController : MonoBehaviour
 {
     private Animator animator;
     private Transform target;
+    private Rigidbody2D m_Rigidbody;
+
     [SerializeField] private float speed = 1;
     [SerializeField] private float maxRange = 10;
     private float attackRange = 3;
@@ -38,21 +40,27 @@ public class RobotController : MonoBehaviour
 
     public void FollowPlayer()
     {
-        animator.SetBool("withinRangeAttack", false);
-        animator.SetBool("withinRangeView", true);
-        animator.SetFloat("moveX",(target.position.x - transform.position.x));
-        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+        if (animator.GetBool("isDead") == false)
+        { 
+            animator.SetBool("withinRangeAttack", false);
+            animator.SetBool("withinRangeView", true);
+            animator.SetFloat("moveX",(target.position.x - transform.position.x));
+            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+        }
     }
 
     public void OnCollisionEnter2D(Collision2D other)
     {
         if (other.collider.tag == "Player")
         {
-            Destroy(other.gameObject);
+            //Destroy(other.gameObject);
+            //Colocar aquí evento cuando el enemigo collisione con el player
         } 
-        else if (other.collider.tag == "PruebaBullet")
+        else if (other.collider.tag == "PlayerBullet")
         {
             animator.SetTrigger("isDead");
+            //GetComponent<Animator>().enabled = false;
+            GetComponent<RobotController>().enabled = false;
 
         }
     }
