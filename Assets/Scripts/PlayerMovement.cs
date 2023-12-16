@@ -22,9 +22,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float fireRate = 0.5f;
     private Vector2 bulletPos, splatPos, poolPos;
     private float nextFire = 0.0f;
+    private bool isInvincible = false;
+    private float invincibleSec = 1.5f;
+    private float invincibleDelta = 0.15f;
 
-    private string enemy = "Enemy";
-    private string eBullet = "EnemyBullet";
+    [SerializeField] private GameObject torso;
+    [SerializeField] private GameObject legs;
+
+    private string enemy;
+    private string eBullet;
 
     //[SerializeField] private BulletBehavior bullet;
     //[SerializeField] private Transform launchOffset;
@@ -54,6 +60,16 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isInvincible)
+        {
+            enemy = "";
+            eBullet = "";
+        }
+        else if (!isInvincible)
+        {
+            enemy = "Enemy";
+            eBullet = "EnemyBullet";
+        }
         if (!dead)
         {
             horizontal = Input.GetAxisRaw("Horizontal");
@@ -63,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 transform.Translate(horizontal * speed * Time.deltaTime, 0, 0);
             }
-        
+         
         if (horizontal > 0 && !faceRight)
         {
             Flip();
@@ -237,11 +253,23 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public bool GetInvincible()
+    {
+        return isInvincible;
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
     }
 
+    private void BecomeInvincible()
+    {
+        if (!isInvincible)
+        {
+            StartCoroutine(Invincibility());
+        }
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "ground")
@@ -259,7 +287,7 @@ public class PlayerMovement : MonoBehaviour
         Hurt(collision.gameObject);
         if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "EnemyBullet")
         {
-            StartCoroutine(OnCollisionExit2D(collision));
+            BecomeInvincible();
         }
     }
 
@@ -281,7 +309,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Hurt(collision.gameObject);
-        StartCoroutine(OnTriggerExit2D(collision));
+        BecomeInvincible();
     }
 
     private void Hurt(GameObject collision) {
@@ -412,5 +440,32 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(1f);
         enemy = "Enemy";
         eBullet = "EnemyBullet";
+    }
+
+    private void ScaleModelTo(Vector3 scale)
+    {
+        torso.transform.localScale = scale;
+        legs.transform.localScale = scale;
+    }
+
+    IEnumerator Invincibility()
+    {
+        isInvincible = true;
+        for (float i = 0; i<invincibleSec; i += invincibleDelta)
+        {
+            if (torso.transform.localScale == Vector3.one && torso.transform.localScale == Vector3.one)
+            {
+                ScaleModelTo(Vector3.zero);
+            }
+            else
+            {
+                ScaleModelTo(Vector3.one);
+            }
+
+            yield return new WaitForSeconds(invincibleDelta);
+        }
+        ScaleModelTo(Vector3.one);
+        isInvincible = false;
+
     }
 }

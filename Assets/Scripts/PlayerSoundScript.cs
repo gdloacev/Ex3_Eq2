@@ -8,6 +8,9 @@ public class PlayerSoundScript : MonoBehaviour
     private PlayerMovement pmove;
     private bool run;
 
+    private string enemy;
+    private string eBullet;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,11 +47,21 @@ public class PlayerSoundScript : MonoBehaviour
         {
             playerShoot.Play();
         }
+
+        if (pmove.GetInvincible())
+        {
+            enemy = "";
+            eBullet = "";
+        }else if (!pmove.GetInvincible())
+        {
+            enemy = "Enemy";
+            eBullet = "EnemyBullet";
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("EnemyBullet"))
+        if (collision.gameObject.CompareTag(enemy) || collision.gameObject.CompareTag(eBullet))
         {
             if (pmove.GetLivesCount() > 0)
             {
@@ -63,7 +76,7 @@ public class PlayerSoundScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("EnemyBullet"))
+        if (collision.gameObject.CompareTag(enemy) || collision.gameObject.CompareTag(eBullet))
         {
             if (pmove.GetLivesCount() > 0)
             {

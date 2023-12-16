@@ -7,8 +7,12 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private RawImage[] life;
     private int hearts;
-    private string enemy = "Enemy";
-    private string eBullet = "EnemyBullet";
+    private string enemy;
+    private string eBullet;
+    private bool isInvincible = false;
+    private float invincibleSec = 1.5f;
+    private float invincibleDelta = 0.15f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +42,17 @@ public class PlayerHealth : MonoBehaviour
                 break;
 
         }
+
+        if (isInvincible)
+        {
+            enemy = "";
+            eBullet = "";
+        }
+        else if (!isInvincible)
+        {
+            enemy = "Enemy";
+            eBullet = "EnemyBullet";
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -48,7 +63,7 @@ public class PlayerHealth : MonoBehaviour
             {
                 UnityEngine.Debug.Log("Herido");
                 hearts--;
-                StartCoroutine(OnCollisionExit2D(collision));
+                BecomeInvincible();
             }
         }
     }
@@ -61,8 +76,16 @@ public class PlayerHealth : MonoBehaviour
             {
                 UnityEngine.Debug.Log("Herido");
                 hearts--;
-                StartCoroutine(OnTriggerExit2D(collision));
+                BecomeInvincible();
             }
+        }
+    }
+
+    private void BecomeInvincible()
+    {
+        if (!isInvincible)
+        {
+            StartCoroutine(Invincibility());
         }
     }
 
@@ -82,5 +105,16 @@ public class PlayerHealth : MonoBehaviour
         yield return new WaitForSeconds(1f);
         enemy = "Enemy";
         eBullet = "EnemyBullet";
+    }
+
+    IEnumerator Invincibility()
+    {
+        isInvincible = true;
+        for (float i = 0; i < invincibleSec; i += invincibleDelta)
+        {
+            yield return new WaitForSeconds(invincibleDelta);
+        }
+        isInvincible = false;
+
     }
 }
