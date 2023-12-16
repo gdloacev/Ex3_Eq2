@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private RawImage[] life;
+    [SerializeField] private PanelManager _panelManager;
     private int hearts;
     private string enemy;
     private string eBullet;
@@ -14,14 +15,11 @@ public class PlayerHealth : MonoBehaviour
     private float invincibleDelta = 0.15f;
 
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         hearts = 5;
     }
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         switch (hearts)
         {
@@ -87,24 +85,6 @@ public class PlayerHealth : MonoBehaviour
         {
             StartCoroutine(Invincibility());
         }
-    }
-
-    private IEnumerator OnTriggerExit2D(Collider2D collision)
-    {
-        enemy = "";
-        eBullet = "";
-        yield return new WaitForSeconds(1f);
-        enemy = "Enemy";
-        eBullet = "EnemyBullet";
-    }
-
-    private IEnumerator OnCollisionExit2D(Collision2D collision)
-    {
-        enemy = "";
-        eBullet = "";
-        yield return new WaitForSeconds(1f);
-        enemy = "Enemy";
-        eBullet = "EnemyBullet";
     }
 
     IEnumerator Invincibility()

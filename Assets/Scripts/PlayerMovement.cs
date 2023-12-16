@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Animator animSplat, animPool;
     [SerializeField] private GameObject bulletRight, bulletLeft, bulletUp, bulletDown, bloodSplat, bloodPool;
     [SerializeField] private float fireRate = 0.5f;
+    [SerializeField] private PanelManager _panelManager = null;
     private Vector2 bulletPos, splatPos, poolPos;
     private float nextFire = 0.0f;
     private bool isInvincible = false;
@@ -351,6 +352,7 @@ public class PlayerMovement : MonoBehaviour
                 animTorso.SetTrigger("deadT");
                 animLegs.SetTrigger("deadT");
                 lives--;
+                _panelManager.LoseFuction();
                 dead = true;
             }
         }
