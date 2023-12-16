@@ -18,7 +18,7 @@ public class BulletBehavior : MonoBehaviour
     void Update()
     {
         rb.velocity = new Vector2(velX, velY);
-        Destroy(gameObject, 2f);
+        Destroy(gameObject, 1.5f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
