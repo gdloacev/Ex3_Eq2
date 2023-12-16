@@ -9,6 +9,8 @@ public class BossShoot : MonoBehaviour
     [SerializeField] private GameObject _bullet;
     [SerializeField] private float _coldDownFire = 1f;
     [SerializeField] private float _fireForce = 10f;
+    [SerializeField] private AudioSource _audioSource = null;
+    [SerializeField] private AudioClip _audioShoot = null;
 
     private Animator _animator = null;
     private BossLife _life = null;
@@ -17,12 +19,14 @@ public class BossShoot : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _life = GetComponent<BossLife>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player") && !_life.isDied()) {
             _animator.Play("Shoot");
+            _audioSource.PlayOneShot(_audioShoot);
             StartCoroutine("Shoot");
         }
     }

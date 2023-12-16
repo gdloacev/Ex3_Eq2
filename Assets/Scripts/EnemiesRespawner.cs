@@ -13,7 +13,6 @@ public class EnemiesRespawner : MonoBehaviour
         {
             GameObject enemy = Instantiate(_enemyPrefab, gameObject.transform.position, Quaternion.identity);
             yield return new WaitForSeconds(_enemyRespawnTime);
-            GameObject enemy1 = Instantiate(_enemyPrefab, gameObject.transform.position, Quaternion.identity);
         }
     }
 
@@ -25,10 +24,7 @@ public class EnemiesRespawner : MonoBehaviour
     }
 
     private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision != null && collision.gameObject.CompareTag("Player"))
-        {
-            StopCoroutine(Respawn());
-        }
+    {        
+        StopCoroutine(Respawn());
     }
 }
