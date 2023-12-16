@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     private bool faceRight = true;
     private bool faceUp = false;
     private bool faceDown = false;
+
     
 
     void Start()
@@ -74,11 +75,13 @@ public class PlayerMovement : MonoBehaviour
         {
             animTorso.SetFloat("moveX", 1f);
             animLegs.SetFloat("moveX", 1f);
+            animSplat.SetFloat("moveX", 1f);
         }
         else if (!faceRight)
         {
             animTorso.SetFloat("moveX", 0f);
             animLegs.SetFloat("moveX", 0f);
+            animSplat.SetFloat("moveX", 0f);
         }
 
         if (horizontal < 0)
@@ -251,12 +254,27 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-        Hurt(collision.gameObject);        
+        Hurt(collision.gameObject);
+    }
+
+    public int GetLivesCount()
+    {
+        return lives;
+    }
+
+    public bool GetReadyJump()
+    {
+        return readyToJump;
+    }
+
+    public bool GetCrouch()
+    {
+        return crouch;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Hurt(collision.gameObject);    
+        Hurt(collision.gameObject);
     }
 
     private void Hurt(GameObject collision) {
@@ -281,6 +299,7 @@ public class PlayerMovement : MonoBehaviour
                 animLegs.SetTrigger("hurt");
                 animSplat.SetTrigger("hurt");
                 Instantiate(bloodSplat, splatPos, Quaternion.identity);
+                StartCoroutine(Invincibility(3f));
             }
             else if (lives == 1)
             {
@@ -361,5 +380,12 @@ public class PlayerMovement : MonoBehaviour
         transform.localScale = currentScale;
 
         faceRight = !faceRight;
+    }
+
+    IEnumerator Invincibility(float time)
+    {
+        bc.gameObject.SetActive(false);
+        yield return new WaitForSeconds(time);
+        bc.gameObject.SetActive(true);
     }
 }
