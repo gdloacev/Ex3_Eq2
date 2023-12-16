@@ -299,7 +299,7 @@ public class PlayerMovement : MonoBehaviour
                 animLegs.SetTrigger("hurt");
                 animSplat.SetTrigger("hurt");
                 Instantiate(bloodSplat, splatPos, Quaternion.identity);
-                StartCoroutine(Invincibility(3f));
+                //StartCoroutine(Invincibility(3f));
             }
             else if (lives == 1)
             {
@@ -382,10 +382,10 @@ public class PlayerMovement : MonoBehaviour
         faceRight = !faceRight;
     }
 
-    IEnumerator Invincibility(float time)
+    /*IEnumerator Invincibility(float time)
     {
         bc.gameObject.SetActive(false);
         yield return new WaitForSeconds(time);
         bc.gameObject.SetActive(true);
-    }
+    }*/
 }
