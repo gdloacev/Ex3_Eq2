@@ -11,15 +11,15 @@ public class RobotController : MonoBehaviour
     [SerializeField] private float speed = 1;
     [SerializeField] private float maxRange = 10;
     private float attackRange = 3;
-    // Start is called before the first frame update
+    private BoxCollider2D _collider = null;
+    
     void Start()
     {
         animator = GetComponent<Animator>();
         target = FindObjectOfType<PlayerMovement>().transform;
-
+        _collider = GetComponent<BoxCollider2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Vector3.Distance(target.position, transform.position) <= attackRange)
@@ -51,17 +51,21 @@ public class RobotController : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.collider.tag == "Player")
-        {
-            //Destroy(other.gameObject);
-            //Colocar aquí evento cuando el enemigo collisione con el player
-        } 
-        else if (other.collider.tag == "PlayerBullet")
+        if (other.collider.tag == "PlayerBullet")
         {
             animator.SetTrigger("isDead");
-            //GetComponent<Animator>().enabled = false;
             GetComponent<RobotController>().enabled = false;
 
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("PlayerBullet"))
+        {
+            animator.SetTrigger("isDead");
+            _collider.isTrigger = true;
+            gameObject.tag = "Untagged";
         }
     }
 }

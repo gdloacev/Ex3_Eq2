@@ -33,6 +33,7 @@ public class BossLife : MonoBehaviour
             UnityEngine.Debug.Log("Muerto");
             _animator.Play("Die");
             _boxCollider.isTrigger = true;
+            gameObject.tag = "Untagged";
         }
     }
 
