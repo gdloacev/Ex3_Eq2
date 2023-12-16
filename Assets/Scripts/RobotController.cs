@@ -19,17 +19,17 @@ public class RobotController : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        target = FindObjectOfType<PlayerMovement>().transform;
+        target = FindObjectOfType<PlayerMovement>()?.transform ?? null;
         _collider = GetComponent<BoxCollider2D>();
     }
 
     void Update()
     {
-        if (Vector3.Distance(target.position, transform.position) <= attackRange)
+        if (target != null && Vector3.Distance(target.position, transform.position) <= attackRange)
         {
             animator.SetBool("withinRangeAttack", true);
         }
-        else if (Vector3.Distance(target.position, transform.position) <= maxRange)
+        else if (target != null && Vector3.Distance(target.position, transform.position) <= maxRange)
         {
             FollowPlayer();
         } 
