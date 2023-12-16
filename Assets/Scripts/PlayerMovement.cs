@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -181,7 +182,7 @@ public class PlayerMovement : MonoBehaviour
             faceUp = false;
         }
 
-        if (Input.GetKey(KeyCode.E) && Time.time > nextFire)
+        if (Input.GetMouseButton(0) && Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
             if (crouch)
@@ -250,7 +251,16 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "EnemyBullet")
+        Hurt(collision.gameObject);        
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Hurt(collision.gameObject);    
+    }
+
+    private void Hurt(GameObject collision) {
+        if (collision.tag == "Enemy" || collision.tag == "EnemyBullet")
         {
             splatPos = transform.position;
             poolPos = transform.position;
@@ -277,8 +287,8 @@ public class PlayerMovement : MonoBehaviour
                 Instantiate(bloodPool, poolPos, Quaternion.identity);
                 Instantiate(bloodSplat, splatPos, Quaternion.identity);
                 animPool.SetBool("dead", true);
-                animTorso.SetBool("dead", true);
-                animLegs.SetBool("dead", true);
+                animTorso.SetTrigger("deadT");
+                animLegs.SetTrigger("deadT");
                 lives--;
                 dead = true;
             }

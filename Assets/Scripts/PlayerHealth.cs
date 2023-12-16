@@ -7,6 +7,7 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private RawImage[] life;
     private int hearts;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,10 +40,23 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("EnemyBullet"))
         {
             if (hearts > 0)
             {
+                UnityEngine.Debug.Log("Herido");
+                hearts--;
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("EnemyBullet"))
+        {
+            if (hearts > 0)
+            {
+                UnityEngine.Debug.Log("Herido");
                 hearts--;
             }
         }
