@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private RawImage[] life;
-    [SerializeField] private PanelManager _panelManager;
     private int hearts;
     private string enemy;
     private string eBullet;
