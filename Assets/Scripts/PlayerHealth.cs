@@ -7,6 +7,8 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private RawImage[] life;
     private int hearts;
+    private string enemy = "Enemy";
+    private string eBullet = "EnemyBullet";
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +42,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("EnemyBullet"))
+        if (collision.gameObject.CompareTag(enemy) || collision.gameObject.CompareTag(eBullet))
         {
             if (hearts > 0)
             {
@@ -52,7 +54,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("EnemyBullet"))
+        if (collision.gameObject.CompareTag(enemy) || collision.gameObject.CompareTag(eBullet))
         {
             if (hearts > 0)
             {
@@ -60,5 +62,23 @@ public class PlayerHealth : MonoBehaviour
                 hearts--;
             }
         }
+    }
+
+    private IEnumerator OnTriggerExit2D(Collider2D collision)
+    {
+        enemy = "";
+        eBullet = "";
+        yield return new WaitForSeconds(3f);
+        enemy = "Enemy";
+        eBullet = "EnemyBullet";
+    }
+
+    private IEnumerator OnCollisionExit2D(Collision2D collision)
+    {
+        enemy = "";
+        eBullet = "";
+        yield return new WaitForSeconds(3f);
+        enemy = "Enemy";
+        eBullet = "EnemyBullet";
     }
 }

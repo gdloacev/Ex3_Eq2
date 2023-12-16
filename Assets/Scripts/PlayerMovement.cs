@@ -23,6 +23,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 bulletPos, splatPos, poolPos;
     private float nextFire = 0.0f;
 
+    private string enemy = "Enemy";
+    private string eBullet = "EnemyBullet";
 
     //[SerializeField] private BulletBehavior bullet;
     //[SerializeField] private Transform launchOffset;
@@ -255,6 +257,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Hurt(collision.gameObject);
+        if (collision.gameObject.tag == enemy || collision.gameObject.tag == eBullet)
+        {
+            StartCoroutine(OnCollisionExit2D(collision));
+        }
     }
 
     public int GetLivesCount()
@@ -275,10 +281,11 @@ public class PlayerMovement : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Hurt(collision.gameObject);
+        StartCoroutine(OnTriggerExit2D(collision));
     }
 
     private void Hurt(GameObject collision) {
-        if (collision.tag == "Enemy" || collision.tag == "EnemyBullet")
+        if (collision.tag == enemy || collision.tag == eBullet)
         {
             splatPos = transform.position;
             poolPos = transform.position;
@@ -299,7 +306,6 @@ public class PlayerMovement : MonoBehaviour
                 animLegs.SetTrigger("hurt");
                 animSplat.SetTrigger("hurt");
                 Instantiate(bloodSplat, splatPos, Quaternion.identity);
-                //StartCoroutine(Invincibility(3f));
             }
             else if (lives == 1)
             {
@@ -382,10 +388,21 @@ public class PlayerMovement : MonoBehaviour
         faceRight = !faceRight;
     }
 
-    /*IEnumerator Invincibility(float time)
+    private IEnumerator OnCollisionExit2D(Collision2D collision)
     {
-        bc.gameObject.SetActive(false);
-        yield return new WaitForSeconds(time);
-        bc.gameObject.SetActive(true);
-    }*/
+        enemy = "";
+        eBullet = "";
+        yield return new WaitForSeconds(3f);
+        enemy = "Enemy";
+        eBullet = "EnemyBullet";
+    }
+
+    private IEnumerator OnTriggerExit2D(Collider2D collision)
+    {
+        enemy = "";
+        eBullet = "";
+        yield return new WaitForSeconds(3f);
+        enemy = "Enemy";
+        eBullet = "EnemyBullet";
+    }
 }
