@@ -26,7 +26,6 @@ public class BossShoot : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && !_life.isDied()) {
             _animator.Play("Shoot");
-            _audioSource.PlayOneShot(_audioShoot);
             StartCoroutine("Shoot");
         }
     }
@@ -40,6 +39,7 @@ public class BossShoot : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(_coldDownFire);
+            _audioSource.PlayOneShot(_audioShoot);
             GameObject bullet = Instantiate(_bullet, _shootRespawn.position, Quaternion.identity);
 
             Rigidbody2D balaRigidbody = bullet.GetComponent<Rigidbody2D>();
