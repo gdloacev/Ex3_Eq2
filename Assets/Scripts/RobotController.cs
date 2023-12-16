@@ -13,7 +13,7 @@ public class RobotController : MonoBehaviour
 
     [SerializeField] private float speed = 1;
     [SerializeField] private float maxRange = 10;
-    [SerializeField] private float attackRange = 0.5f;
+    [SerializeField] private float attackRange = 1.5f;
     private BoxCollider2D _collider = null;
     
     void Start()
