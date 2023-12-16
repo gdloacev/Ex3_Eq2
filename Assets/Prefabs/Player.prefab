@@ -457,7 +457,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   speed: 5
-  jumpForce: 6
+  jumpForce: 8
   animTorso: {fileID: 712844293499135734}
   animLegs: {fileID: 712844293550045701}
   animSplat: {fileID: 4791229256922581865, guid: c73a3d6018354174d90f4efaff954bb6, type: 3}

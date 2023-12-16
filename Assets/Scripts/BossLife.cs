@@ -7,6 +7,7 @@ public class BossLife : MonoBehaviour
     [SerializeField] private int _bossLife = 10;
     private Animator _animator = null;
     private BoxCollider2D _boxCollider = null;
+    private BoxCollider2D _colliderTag = null;
 
     private void Awake()
     {
