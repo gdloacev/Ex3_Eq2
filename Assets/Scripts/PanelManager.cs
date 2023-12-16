@@ -24,7 +24,7 @@ public class PanelManager : MonoBehaviour
         }
     }
 
-    public void ReturnMenu(int index = 0) //Regresar a menú principal
+    public void ReturnMenu(int index) //Regresar a menú principal
     {
         SceneManager.LoadScene(index);
     }
