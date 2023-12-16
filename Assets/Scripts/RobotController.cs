@@ -8,6 +8,9 @@ public class RobotController : MonoBehaviour
     private Transform target;
     private Rigidbody2D m_Rigidbody;
 
+    public AudioSource audioSourceDie;
+    public AudioSource audioSourceMove;
+
     [SerializeField] private float speed = 1;
     [SerializeField] private float maxRange = 10;
     private float attackRange = 3;
@@ -45,7 +48,12 @@ public class RobotController : MonoBehaviour
             animator.SetBool("withinRangeAttack", false);
             animator.SetBool("withinRangeView", true);
             animator.SetFloat("moveX",(target.position.x - transform.position.x));
-            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+
+            Vector3 newPos = transform.position;
+            newPos.x = Mathf.MoveTowards(newPos.x, target.position.x,Time.deltaTime * speed);
+            transform.position = newPos;
+
+           // transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
         }
     }
 
@@ -68,4 +76,15 @@ public class RobotController : MonoBehaviour
             gameObject.tag = "Untagged";
         }
     }
+
+    public void playSoundDie()
+    {
+        audioSourceDie.Play();
+    }
+
+    public void playSoundMove()
+    {
+        audioSourceMove.Play();
+    }
+
 }
