@@ -245,6 +245,8 @@ public class PlayerMovement : MonoBehaviour
             animLegs.SetBool("grounded", true);
             animTorso.SetFloat("speedY", 0f);
             animLegs.SetFloat("speedY", 0f);
+            animTorso.SetBool("faceDown", false);
+            faceDown = false;
 
         }
 
@@ -252,27 +254,28 @@ public class PlayerMovement : MonoBehaviour
         {
             splatPos = transform.position;
             poolPos = transform.position;
-            if (faceRight)
-            {
-                splatPos += new Vector2(+1f, +1f);
-                poolPos += new Vector2(0f, +0.2f);
-            }
-            else if (!faceRight)
-            {
-                splatPos += new Vector2(-1f, +1f);
-                poolPos += new Vector2(0f, +0.2f);
-            }
-            animTorso.SetTrigger("hurt");
-            animLegs.SetTrigger("hurt");
-            animSplat.SetTrigger("hurt");
-            Instantiate(bloodSplat, splatPos, Quaternion.identity);
             if (lives > 1)
             {
                 lives--;
+                if (faceRight)
+                {
+                    splatPos += new Vector2(+1f, +1f);
+                    poolPos += new Vector2(0f, +0.2f);
+                }
+                else if (!faceRight)
+                {
+                    splatPos += new Vector2(-1f, +1f);
+                    poolPos += new Vector2(0f, +0.2f);
+                }
+                animTorso.SetTrigger("hurt");
+                animLegs.SetTrigger("hurt");
+                animSplat.SetTrigger("hurt");
+                Instantiate(bloodSplat, splatPos, Quaternion.identity);
             }
             else if (lives == 1)
             {
                 Instantiate(bloodPool, poolPos, Quaternion.identity);
+                Instantiate(bloodSplat, splatPos, Quaternion.identity);
                 animPool.SetBool("dead", true);
                 animTorso.SetBool("dead", true);
                 animLegs.SetBool("dead", true);
@@ -296,12 +299,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (faceUp && !crouch)
                 {
-                    bulletPos += new Vector2(+1f, +1.5f);
+                    bulletPos += new Vector2(0f, +2.5f);
                     Instantiate(bulletUp, bulletPos, Quaternion.identity);
                 }
                 else if (faceDown)
                 {
-                    bulletPos += new Vector2(+1f, +0.5f);
+                    bulletPos += new Vector2(0f, -0.5f);
                     Instantiate(bulletDown, bulletPos, Quaternion.identity);
                 }
             }
@@ -315,14 +318,14 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                if (faceUp)
+                if (faceUp && !crouch)
                 {
-                    bulletPos += new Vector2(-1f, +1.5f);
+                    bulletPos += new Vector2(0f, +2.5f);
                     Instantiate(bulletUp, bulletPos, Quaternion.identity);
                 }
                 else if (faceDown)
                 {
-                    bulletPos += new Vector2(-1f, +0.5f);
+                    bulletPos += new Vector2(0f, -0.5f);
                     Instantiate(bulletDown, bulletPos, Quaternion.identity);
                 }
             }

@@ -468,7 +468,7 @@ MonoBehaviour:
   bulletDown: {fileID: 9161883099244777135, guid: 48692f2724207be4f9659a36b0ab228b, type: 3}
   bloodSplat: {fileID: 5694698797004426516, guid: c73a3d6018354174d90f4efaff954bb6, type: 3}
   bloodPool: {fileID: 6930026194077075320, guid: 7df17ec18ac2adc459f9d3a525731ca5, type: 3}
-  fireRate: 0.25
+  fireRate: 0.15
 --- !u!114 &712844294749744271
 MonoBehaviour:
   m_ObjectHideFlags: 0
